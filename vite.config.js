@@ -2,8 +2,10 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
+const base = process.env.GITHUB_PAGES === 'true' ? '/workoutplan/' : '/'
+
 export default defineConfig({
-  base: process.env.GITHUB_PAGES === 'true' ? '/workoutplan/' : '/',
+  base,
   plugins: [
     react(),
     VitePWA({
@@ -17,18 +19,18 @@ export default defineConfig({
         background_color: '#1a1a2e',
         display: 'standalone',
         orientation: 'portrait',
-        scope: '/',
-        start_url: '/',
-        id: '/',
+        scope: base,
+        start_url: base,
+        id: base,
         icons: [
           {
-            src: '/favicon.svg',
+            src: `${base}favicon.svg`,
             sizes: 'any',
             type: 'image/svg+xml',
             purpose: 'any'
           },
           {
-            src: '/favicon.svg',
+            src: `${base}favicon.svg`,
             sizes: 'any',
             type: 'image/svg+xml',
             purpose: 'maskable'
